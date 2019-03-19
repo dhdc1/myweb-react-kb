@@ -1,46 +1,38 @@
-import { Component } from 'react'
-import Layout from '../components/layout'
-import axios from 'axios';
+import { Component } from "react";
+import Layout from "../components/layout";
+import axios from "axios";
 
 class About extends Component {
-
   state = {
-    cat : {}
-  }
+    cat: {}
+  };
 
-  componentDidMount=async ()=>{
-    let resp = await  axios.get("https://aws.random.cat/meow");
+  componentDidMount = async () => {
+    let resp = await axios.get("https://aws.random.cat/meow");
     this.setState({
-      cat : resp.data
-    })
-  }
+      cat: resp.data
+    });
+  };
 
-
-
-  onClick = async ()=>{
-    let resp = await  axios.get("https://aws.random.cat/meow");
+  onClick = async () => {
+    let resp = await axios.get("https://aws.random.cat/meow");
     this.setState({
-      cat : resp.data
-    })
+      cat: resp.data
+    });
+  };
 
-  }
-
-  render () {
+  render() {
     return (
       <Layout>
-        <div>
-          นี่คือไฟล์ about
-        </div>
+        <div>นี่คือไฟล์ about</div>
 
-        <img src ={this.state.cat.file} width='200' height='200' />
+        <img src={this.state.cat.file} width="200" height="200" />
         <p>
           <button onClick={this.onClick}>เปลี่ยน</button>
-          </p>
+        </p>
       </Layout>
-
-    )
+    );
   }
-
 }
 
-export default About
+export default About;
