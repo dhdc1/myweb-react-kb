@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 export default ({ children, title = 'This is the default title' }) => (
-  <div>
+  <div style={{margin:'15px'}}>
     <Head>
       <title>{title}</title>
       <meta charSet='utf-8' />
