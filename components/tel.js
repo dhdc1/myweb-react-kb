@@ -1,11 +1,18 @@
 // pattern-1
+
 /*
 const Tel = ()=>{
     return (
-        <div style={{backgroundColor:'green'}}>055252052 ต่อ 455</div>
+        <div>
+            <div style={{backgroundColor:'green',color:'white'}}>055252052 ต่อ 455</div>
+            <p>{props.name +' '+ props.lname}</p>
+            <Button color="danger">Danger!</Button>
+            { ' '}<Button color="primary">Primary!</Button>
+            <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+        </div>
     )
 }
-export default Tel
+export default Tel;
 */
 
 // pattern-2
@@ -16,6 +23,7 @@ export default () => (
   </div>
 )*/
 // patern-3
+
 import { Component } from 'react'
 class Tel extends Component {
   constructor (props) {
@@ -31,3 +39,4 @@ class Tel extends Component {
   }
 }
 export default Tel
+
