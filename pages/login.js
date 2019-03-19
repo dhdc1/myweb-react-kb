@@ -12,7 +12,7 @@ class Login extends Component {
             <p>
                 <button>OK</button>
                 {' '}
-                <button>Cancle</button>
+                <button type='reset'>Cancle</button>
             </p>
         </form>
       </Layout>
