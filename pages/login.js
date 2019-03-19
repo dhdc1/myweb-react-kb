@@ -7,20 +7,38 @@ class Login extends Component {
         user:'',
         pass:'',
         email:'ttt@gmail.com',
+        null_user:'',
+        null_pass :''
         
     }
     onChange=(e)=>{
+        this.setState({
+            null_pass :'',
+            null_user:''
+        })
         this.setState({
             [e.target.name]:e.target.value
         })
     }
 
     
-    onClear = (e)=>{
+    onClear = ()=>{
         this.setState({
             user:'',
-            pass:''
+            pass:'',
+            email:'ssss@ddd.com'
         })
+    }
+
+    onClick=()=>{
+        if(this.state.user == ''){
+            this.setState({
+                null_user :'ต้องกรอก',
+                null_pass :  'ต้องกรอก'
+            })
+            return;
+        }
+        alert(this.state.user + this.state.pass)
     }
 
    
@@ -28,18 +46,18 @@ class Login extends Component {
   render () {
     return (
       <Layout title='Login'>
-        <form>
-            <p>User:<input name='user' onChange={this.onChange} value={this.state.user} /></p>
-            <p>Pass:<input name='pass' onChange={this.onChange} value={this.state.pass} /></p>
+        
+            <p>User:<input name='user' onChange={this.onChange} value={this.state.user} />{this.state.null_user}</p>
+            <p>Pass:<input name='pass' onChange={this.onChange} value={this.state.pass} />{this.state.null_pass}</p>
             <p>
-                <button>OK</button>
+                <button onClick={this.onClick}>OK</button>
                 {' '}
                 <button type='reset' onClick={this.onClear}>Cancle</button>
             </p>
             <p>
                 {this.state.user}, {this.state.pass} ,{this.state.email}
             </p>
-        </form>
+        
       </Layout>
 
     )
