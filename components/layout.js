@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import "bootstrap/dist/css/bootstrap.css";
 
 export default ({ children, title = 'This is the default title' }) => (
   <div style={{margin:'15px'}}>
@@ -11,7 +12,7 @@ export default ({ children, title = 'This is the default title' }) => (
     <header>
       <nav>
         <Link href='/'>
-          หน้าแรก
+          <a>หน้าแรก</a>
         </Link>{' '}
         |
         <Link href='/about'>
@@ -23,7 +24,7 @@ export default ({ children, title = 'This is the default title' }) => (
         </Link>{' '}
         |
         <Link href='/login'>
-          เข้าใช้งาน
+          <a>เข้าใช้งาน</a>
         </Link>
       </nav>
     </header>

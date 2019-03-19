@@ -1,7 +1,8 @@
 import { Component } from "react";
 import Layout from "../components/layout";
-import "bootstrap/dist/css/bootstrap.css";
-import { Button, Spinner } from "reactstrap";
+import axios from 'axios';
+
+import {Button,ProgressBar} from 'react-bootstrap'
 
 class Login extends Component {
   state = {
@@ -9,8 +10,12 @@ class Login extends Component {
     pass: "",
     email: "ttt@gmail.com",
     null_user: "",
-    null_pass: ""
+    null_pass: "",
+   
   };
+
+ 
+
   onChange = e => {
     this.setState({
       null_pass: "",
@@ -36,18 +41,15 @@ class Login extends Component {
       });
       return;
     }
-    
     let user = this.state.user;
     let pass = this.state.pass;
-
-    localStorage.setItem('user', user);
-    localStorage.setItem('pass' ,pass);
+    localStorage.setItem('user',user);
+    localStorage.setItem('pass',pass);
+    alert(this.state.user + this.state.pass);
     this.setState({
-        user: "",
-        pass: ""
+      user:'',
+      pass:''
     })
-
-    //alert(this.state.user + this.state.pass);
   };
 
 
@@ -74,18 +76,18 @@ class Login extends Component {
             {this.state.null_pass}
           </p>
           <p>
-            <Button outline color="success" onClick={this.onClick}>
-              OK
-            </Button>{" "}
-            <Button outline color="danger" type="reset" onClick={this.onClear}>
-              Cancle
-            </Button>
+           
+           <Button variant="outline-primary" onClick={this.onClick}>OK</Button>
+           {' '}
+           
+           <button className='btn btn-success' onClick={this.onClear}>Cancle</button>
           </p>
           <p>
             {this.state.user}, {this.state.pass} ,{this.state.email}
           </p>
+          <ProgressBar variant="success" now={40} />
 
-          <Spinner style={{ width: "3rem", height: "3rem" }} />
+          
         </div>
       </Layout>
     );
