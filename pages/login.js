@@ -36,8 +36,20 @@ class Login extends Component {
       });
       return;
     }
-    alert(this.state.user + this.state.pass);
+    
+    let user = this.state.user;
+    let pass = this.state.pass;
+
+    localStorage.setItem('user', user);
+    localStorage.setItem('pass' ,pass);
+    this.setState({
+        user: "",
+        pass: ""
+    })
+
+    //alert(this.state.user + this.state.pass);
   };
+
 
   render() {
     return (
