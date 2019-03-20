@@ -8,11 +8,11 @@ class Login extends Component {
   state={
     username:'',
     password:'',
-    isLogin :false
+    isLogin :false,
+    ip :'http://203.157.118.123:4000'
   }
   onSubmit=(e)=>{
     e.preventDefault()
-
   }
 
   onChange=(e)=>{
