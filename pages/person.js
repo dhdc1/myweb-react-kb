@@ -46,6 +46,13 @@ class Person extends Component {
     });
   };
 
+  deletePerson=async(cid)=>{
+    let {ip} = this.state;
+    console.log(cid)
+    let res = await axios.delete(`${ip}/person/${cid}`);
+    this.getPerson();
+  }
+
   render() {
     let { persons, cid, fname, lname } = this.state;
     return (
@@ -83,15 +90,17 @@ class Person extends Component {
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Address</th>
+                  <th>#</th>
                 </tr>
               </thead>
               <tbody>
                 {persons.map((person, i) => (
-                  <tr>
+                  <tr key={i} onClick={()=>alert(person.cid)}>
                     <td>{i + 1}</td>
                     <td>{person.fname}</td>
                     <td>{person.lname}</td>
                     <td>{person.address}</td>
+                    <td><button key={person.cid} onClick={()=>this.deletePerson(person.cid)}>ลบ</button></td>
                   </tr>
                 ))}
               </tbody>
