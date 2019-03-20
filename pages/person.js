@@ -1,61 +1,54 @@
-import {Component} from 'react';
-import axios from 'axios';
-import Layout from '../components/layout';
-import {Table} from 'react-bootstrap'
+import { Component } from "react";
+import axios from "axios";
+import Layout from "../components/layout";
+import { Table } from "react-bootstrap";
 
-class Person extends Component{
-    state = {
-        persons : null,
-        ip : 'http://203.157.118.123:4000'
-    }
+class Person extends Component {
+  state = {
+    persons: null,
+    ip: "http://203.157.118.123:4000"
+  };
 
-    componentDidMount = async()=>{
-        let res = await axios.get(this.state.ip+'/persons');
-        this.setState({
-            persons : res.data
-        })
-        console.log(res.data)
-    }
+  componentDidMount = async () => {
+    let res = await axios.get(this.state.ip + "/persons");
+    this.setState({
+      persons: res.data
+    });
+    console.log(res.data);
+  };
 
-    render(){
-        let {persons} = this.state;
-        return(
-            <Layout title='แสดงข้อมูลบุคคล'>
-
-
-
-              {persons?<div>
-
-                <Table striped bordered hover size="sm">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Address</th>
-    </tr>
-  </thead>
-  <tbody>
-   
-  
-
-                {persons.map((person,i)=>(
+  render() {
+    let { persons } = this.state;
+    return (
+      <Layout title="แสดงข้อมูลบุคคล">
+        {persons ? (
+          <div>
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody>
+                {persons.map((person, i) => (
                   <tr>
-                     <td>{i+1}</td>
-                     <td>{person.fname}</td>
-                     <td>{person.lname}</td>
-                     <td>{person.address}</td>
-                   </tr>   
+                    <td>{i + 1}</td>
+                    <td>{person.fname}</td>
+                    <td>{person.lname}</td>
+                    <td>{person.address}</td>
+                  </tr>
                 ))}
-
-</tbody>
-</Table>
-
-              </div>:<img src={'static/load.gif'}></img>}
-                
-                
-            </Layout>
-        );
-    }
+              </tbody>
+            </Table>
+          </div>
+        ) : (
+          <img src={"static/load.gif"} />
+        )}
+      </Layout>
+    );
+  }
 }
-export default Person
+export default Person;
