@@ -5,11 +5,11 @@ import Layout from '../components/layout';
 class Person extends Component{
     state = {
         persons : null,
-        ip : 'http://203.157.118.123:4000/persons'
+        ip : 'http://203.157.118.123:4000'
     }
 
     componentDidMount = async()=>{
-        let res = await axios.get(this.state.ip);
+        let res = await axios.get(this.state.ip+'/persons');
         this.setState({
             persons : res.data
         })
@@ -17,9 +17,19 @@ class Person extends Component{
     }
 
     render(){
+        let {persons} = this.state;
         return(
             <Layout title='แสดงข้อมูลบุคคล'>
-                {JSON.stringify(this.state.persons)}
+
+              {persons?<div>
+
+                {persons.map((person,i)=>(
+                    <p key={i}>{person.fname} {person.lname}</p>
+                ))}
+
+              </div>:<img src={'static/load.gif'}></img>}
+                
+                
             </Layout>
         );
     }

@@ -33,6 +33,10 @@ export default ({ children, title = 'This is the default title' }) => (
           <Link href='/contact'>
           <a className='nav-link' role='button'>ติดต่อ</a>
           </Link>
+
+          <Link href='/person'>
+          <a className='nav-link' role='button'>ข้อมูล</a>
+          </Link>
           
           <NavDropdown title='ผู้ใช้' id='basic-nav-dropdown'>
             <Link href='/login'>
