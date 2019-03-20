@@ -7,57 +7,72 @@ class Person extends Component {
   state = {
     persons: null,
     ip: "http://203.157.118.123:4000",
-    cid:'',
-    fname:'',
-    lname:''
+    cid: "",
+    fname: "",
+    lname: ""
   };
 
-  getPerson = async () =>{
+  getPerson = async () => {
     let res = await axios.get(this.state.ip + "/persons");
     this.setState({
       persons: res.data
     });
     console.log(res.data);
-  }
-
-  componentDidMount = () => {
-   this.getPerson();
   };
 
-  onSubmit=async (e)=>{
-    e.preventDefault();    
-    let data = {
-        cid:this.state.cid,
-        fname: this.state.fname,
-        lname:this.state.lname
-    }
-    let res = await axios.post(this.state.ip+'/new-person',data)
-    this.setState({
-        cid:'',
-        fname:'',
-        lname:''
-    })
+  componentDidMount = () => {
     this.getPerson();
-  }
+  };
 
-  onChange=(e)=>{
-        this.setState({
-            [e.target.name]:e.target.value
-        })
-  }
+  onSubmit = async e => {
+    e.preventDefault();
+    let data = {
+      cid: this.state.cid,
+      fname: this.state.fname,
+      lname: this.state.lname
+    };
+    let res = await axios.post(this.state.ip + "/new-person", data);
+    this.setState({
+      cid: "",
+      fname: "",
+      lname: ""
+    });
+    this.getPerson();
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   render() {
-    let { persons ,cid,fname,lname } = this.state;
+    let { persons, cid, fname, lname } = this.state;
     return (
       <Layout title="แสดงข้อมูลบุคคล">
         <form onSubmit={this.onSubmit}>
-          <input name="cid" placeholder='เลขบัตร' onChange={this.onChange} value={cid}  />
-          <input name="fname" placeholder='ชื่อ' onChange={this.onChange}   value={fname}       />
-          <input name="lname" placeholder='นามสกุล' onChange={this.onChange} value={lname}     />
+          <input
+            name="cid"
+            placeholder="เลขบัตร"
+            onChange={this.onChange}
+            value={cid}
+          />
+          <input
+            name="fname"
+            placeholder="ชื่อ"
+            onChange={this.onChange}
+            value={fname}
+          />
+          <input
+            name="lname"
+            placeholder="นามสกุล"
+            onChange={this.onChange}
+            value={lname}
+          />
           <button>ตกลง</button>
         </form>
 
-        <br/>
+        <br />
 
         {persons ? (
           <div>
