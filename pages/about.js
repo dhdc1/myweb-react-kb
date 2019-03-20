@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
+import {Button} from 'react-bootstrap'
 
 class About extends Component {
   state = {
@@ -19,6 +20,9 @@ class About extends Component {
     this.setState({
       cat: resp.data
     });
+
+    sessionStorage.setItem('cat',resp.data.file)
+
   };
 
   render() {
@@ -28,7 +32,7 @@ class About extends Component {
 
         <img src={this.state.cat.file} width="200" height="200" />
         <p>
-          <button onClick={this.onClick}>เปลี่ยน</button>
+        <Button variant="outline-primary" onClick={this.onClick}>Primary</Button>
         </p>
       </Layout>
     );

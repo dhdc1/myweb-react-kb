@@ -21,15 +21,19 @@ export default ({ children, title = 'This is the default title' }) => (
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
+
           <Link href='/'>
           <a className='nav-link' role='button'>หน้าแรก</a>
           </Link>
+
           <Link href='/about'>
           <a className='nav-link' role='button'>เกี่ยวกับ</a>
           </Link>
+
           <Link href='/contact'>
           <a className='nav-link' role='button'>ติดต่อ</a>
           </Link>
+          
           <NavDropdown title='ผู้ใช้' id='basic-nav-dropdown'>
             <Link href='/login'>
             <a className='dropdown-item'>เข้าระบบ</a>
