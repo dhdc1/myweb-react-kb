@@ -11,8 +11,29 @@ class Login extends Component {
     isLogin :false,
     ip :'http://203.157.118.123:4000'
   }
-  onSubmit=(e)=>{
+  onSubmit=async (e)=>{
     e.preventDefault()
+    let {username,password,ip} = this.state;
+
+    let data = {
+      username : username,
+      password : password
+    }
+    let res = await axios.post(ip+'/user',data)
+
+    console.log(res.data[0].id)
+    if(res.data[0].id>0){
+      sessionStorage.setItem('login',1)
+    }else{
+      sessionStorage.setItem('login',0)
+    }
+
+    this.setState({
+      username:'',
+      password:''
+    })
+    
+
   }
 
   onChange=(e)=>{
@@ -42,7 +63,7 @@ class Login extends Component {
           </Form.Group>
           
           <Button variant='primary' type='submit'>
-            Submit
+            Login
           </Button>
         </Form>
       </Layout>
