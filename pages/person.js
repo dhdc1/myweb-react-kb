@@ -20,9 +20,19 @@ class Person extends Component {
     console.log(res.data);
   };
 
-  onSubmit=(e)=>{
+  onSubmit=async (e)=>{
     e.preventDefault();    
-
+    let data = {
+        cid:this.state.cid,
+        fname: this.state.fname,
+        lname:this.state.lname
+    }
+    let res = await axios.post(this.state.ip+'/new-person',data)
+    this.setState({
+        cid:'',
+        fname:'',
+        lname:''
+    })
   }
 
   onChange=(e)=>{
