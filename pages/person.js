@@ -12,12 +12,16 @@ class Person extends Component {
     lname:''
   };
 
-  componentDidMount = async () => {
+  getPerson = async () =>{
     let res = await axios.get(this.state.ip + "/persons");
     this.setState({
       persons: res.data
     });
     console.log(res.data);
+  }
+
+  componentDidMount = () => {
+   this.getPerson();
   };
 
   onSubmit=async (e)=>{
@@ -33,6 +37,7 @@ class Person extends Component {
         fname:'',
         lname:''
     })
+    this.getPerson();
   }
 
   onChange=(e)=>{
