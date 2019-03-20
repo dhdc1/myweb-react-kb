@@ -95,7 +95,7 @@ class Person extends Component {
               </thead>
               <tbody>
                 {persons.map((person, i) => (
-                  <tr key={i} onClick={()=>alert(person.cid)}>
+                  <tr key={i} onClick={()=>alert(person.cid)} style={{cursor:'pointer'}}>
                     <td>{i + 1}</td>
                     <td>{person.fname}</td>
                     <td>{person.lname}</td>
