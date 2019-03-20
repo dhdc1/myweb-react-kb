@@ -2,6 +2,7 @@ import { Component } from 'react'
 import Layout from '../components/layout'
 import axios from 'axios'
 import { Button ,Form } from 'react-bootstrap'
+import Router from 'next/router';
 
 class Login extends Component {
 
@@ -11,6 +12,16 @@ class Login extends Component {
     isLogin :false,
     ip :'http://203.157.118.123:4000'
   }
+
+  componentDidMount=()=>{
+    let login = sessionStorage.getItem('login')
+    if(login == 1){
+      this.setState({
+        isLogin :true
+      })
+    }
+  }
+
   onSubmit=async (e)=>{
     e.preventDefault()
     let {username,password,ip} = this.state;
@@ -24,6 +35,9 @@ class Login extends Component {
     console.log(res.data[0].id)
     if(res.data[0].id>0){
       sessionStorage.setItem('login',1)
+      this.setState({
+        isLogin :true
+      })
     }else{
       sessionStorage.setItem('login',0)
     }
@@ -43,7 +57,10 @@ class Login extends Component {
   }
 
   render () {
-    const {username,password} = this.state;
+    const {username,password,isLogin} = this.state;
+    if(isLogin){
+      Router.push('/')
+    }
 
     return (
       <Layout title='Login'>
