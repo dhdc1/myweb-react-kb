@@ -14,7 +14,7 @@ export default ({ children, title = 'This is the default title' }) => (
       <meta charSet='utf-8' />
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     </Head>
-    <Navbar bg='primary' expand='lg' fixed='top'>
+    <Navbar bg='primary' expand='lg' fixed='top' >
       <Navbar.Brand href='#'>
         SmartOffice
       </Navbar.Brand>
@@ -23,7 +23,7 @@ export default ({ children, title = 'This is the default title' }) => (
         <Nav className='mr-auto'>
 
           <Link href='/'>
-          <a className='nav-link' role='button'>หน้าแรก</a>
+          <a className='nav-link' role='button' >หน้าแรก</a>
           </Link>
 
           <Link href='/about'>
