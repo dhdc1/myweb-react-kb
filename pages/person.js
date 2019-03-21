@@ -137,10 +137,9 @@ class Person extends Component {
           <button type="submit">ตกลง</button>{" "}
           <button type="button" onClick={this.clearForm}>
             ล้าง
-          </button>
-          {""}
+          </button>{" "}
           <button type="button" onClick={this.getSmartCard}>
-            ดึงข้อมูลจากบัตร
+            SmartCard
           </button>
         </form>
 
