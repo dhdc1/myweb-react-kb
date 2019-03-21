@@ -173,7 +173,14 @@ class Person extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>
+              <form className='form'>
+                <input name='u_cid'   className='form-control'/><br/>
+                <input name='u_fname' className='form-control' /><br/>
+                <input name='u_lname' className='form-control' />
+              </form>
+
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
