@@ -31,6 +31,7 @@ class About extends Component {
         <div>นี่คือไฟล์ about</div>
 
         <img src={this.state.cat.file} width="200" height="200" />
+        <img src="https://localhost:8443/smartcard/picture/" />
         <p>
         <Button variant="outline-primary" onClick={this.onClick}>Primary</Button>
         </p>
