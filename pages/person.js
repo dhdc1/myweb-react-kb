@@ -1,7 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
 import Layout from "../components/layout";
-import { Table ,Modal ,Button} from "react-bootstrap";
+import { Table, Modal, Button } from "react-bootstrap";
 
 class Person extends Component {
   state = {
@@ -11,19 +11,19 @@ class Person extends Component {
     cid: "",
     fname: "",
     lname: "",
-    show:false,
-    u_cid:'',
-    u_fname:'',
-    u_lname:''
+    show: false,
+    u_cid: "",
+    u_fname: "",
+    u_lname: ""
   };
 
-  handleClose=()=> {
+  handleClose = () => {
     this.setState({ show: false });
-  }
+  };
 
-  handleShow=()=> {
+  handleShow = () => {
     this.setState({ show: true });
-  }
+  };
 
   getSmartCard = async () => {
     let res = await axios.get(this.state.agent);
@@ -88,28 +88,28 @@ class Person extends Component {
   showFormUpdate = (cid, fname, lname) => {
     console.log(cid, fname, lname);
     this.setState({
-      u_cid : cid,
-      u_fname:fname,
-      u_lname:lname
-    })
+      u_cid: cid,
+      u_fname: fname,
+      u_lname: lname
+    });
     // show Modal with from
     this.handleShow();
   };
 
-  saveUpdate= async()=>{
+  saveUpdate = async () => {
     if (!confirm("Are you sure?")) {
       return;
     }
     let data = {
-      cid : this.state.u_cid,
-      fname : this.state.u_fname,
-      lname :this.state.u_lname
-    }
-    let res = await axios.put(this.state.ip + "/person",data);
-    console.log(res.data)
+      cid: this.state.u_cid,
+      fname: this.state.u_fname,
+      lname: this.state.u_lname
+    };
+    let res = await axios.put(this.state.ip + "/person", data);
+    console.log(res.data);
     this.getPerson();
     this.handleClose();
-  }
+  };
 
   render() {
     let { persons, cid, fname, lname } = this.state;
@@ -152,6 +152,7 @@ class Person extends Component {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>บัตร</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Address</th>
@@ -162,9 +163,8 @@ class Person extends Component {
                 {persons.map((person, i) => (
                   <tr key={i}>
                     <td>{i + 1}</td>
-                    <td>
-                      {person.cid}-{person.fname}
-                    </td>
+                    <td>{person.cid}</td>
+                    <td>{person.fname}</td>
                     <td>{person.lname}</td>
                     <td>{person.address}</td>
                     <td>
@@ -197,12 +197,29 @@ class Person extends Component {
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              <form className='form'>
-                <input name='u_cid' disabled='disabled'  className='form-control' onChange={this.onChange} value={this.state.u_cid}/><br/>
-                <input name='u_fname' className='form-control' onChange={this.onChange} value={this.state.u_fname}/><br/>
-                <input name='u_lname' className='form-control' onChange={this.onChange} value={this.state.u_lname} />
-              </form>
-
+            <form className="form">
+              <input
+                name="u_cid"
+                disabled="disabled"
+                className="form-control"
+                onChange={this.onChange}
+                value={this.state.u_cid}
+              />
+              <br />
+              <input
+                name="u_fname"
+                className="form-control"
+                onChange={this.onChange}
+                value={this.state.u_fname}
+              />
+              <br />
+              <input
+                name="u_lname"
+                className="form-control"
+                onChange={this.onChange}
+                value={this.state.u_lname}
+              />
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
@@ -213,7 +230,6 @@ class Person extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-
       </Layout>
     );
   }
