@@ -96,6 +96,21 @@ class Person extends Component {
     this.handleShow();
   };
 
+  saveUpdate= async()=>{
+    if (!confirm("Are you sure?")) {
+      return;
+    }
+    let data = {
+      cid : this.state.u_cid,
+      fname : this.state.u_fname,
+      lname :this.state.u_lname
+    }
+    let res = await axios.put(this.state.ip + "/person",data);
+    console.log(res.data)
+    this.getPerson();
+    this.handleClose();
+  }
+
   render() {
     let { persons, cid, fname, lname } = this.state;
     return (
@@ -177,13 +192,13 @@ class Person extends Component {
           <img src={"static/load.gif"} />
         )}
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <form className='form'>
-                <input name='u_cid'   className='form-control' onChange={this.onChange} value={this.state.u_cid}/><br/>
+                <input name='u_cid' disabled='disabled'  className='form-control' onChange={this.onChange} value={this.state.u_cid}/><br/>
                 <input name='u_fname' className='form-control' onChange={this.onChange} value={this.state.u_fname}/><br/>
                 <input name='u_lname' className='form-control' onChange={this.onChange} value={this.state.u_lname} />
               </form>
@@ -193,7 +208,7 @@ class Person extends Component {
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant="primary" onClick={this.saveUpdate}>
               Save Changes
             </Button>
           </Modal.Footer>
