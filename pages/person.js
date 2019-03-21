@@ -11,7 +11,10 @@ class Person extends Component {
     cid: "",
     fname: "",
     lname: "",
-    show:false
+    show:false,
+    u_cid:'',
+    u_fname:'',
+    u_lname:''
   };
 
   handleClose=()=> {
@@ -84,6 +87,11 @@ class Person extends Component {
 
   showFormUpdate = (cid, fname, lname) => {
     console.log(cid, fname, lname);
+    this.setState({
+      u_cid : cid,
+      u_fname:fname,
+      u_lname:lname
+    })
     // show Modal with from
     this.handleShow();
   };
@@ -175,9 +183,9 @@ class Person extends Component {
           </Modal.Header>
           <Modal.Body>
               <form className='form'>
-                <input name='u_cid'   className='form-control'/><br/>
-                <input name='u_fname' className='form-control' /><br/>
-                <input name='u_lname' className='form-control' />
+                <input name='u_cid'   className='form-control' onChange={this.onChange} value={this.state.u_cid}/><br/>
+                <input name='u_fname' className='form-control' onChange={this.onChange} value={this.state.u_fname}/><br/>
+                <input name='u_lname' className='form-control' onChange={this.onChange} value={this.state.u_lname} />
               </form>
 
           </Modal.Body>
