@@ -66,7 +66,10 @@ class Person extends Component {
   }
 
   deletePerson=async (cid)=>{
-    console.log(cid)
+    
+    if(!confirm('Are you sure?')){
+      return;
+    }
     let res = await axios.delete(this.state.ip +'/person/'+cid)
     this.getPerson();
   }
