@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import fetch from 'isomorphic-unfetch'
 import Layout from "../components/layout";
 import { Table, Modal, Button } from "react-bootstrap";
 
@@ -36,16 +37,19 @@ class Person extends Component {
   };
 
   getPerson = async () => {
-    let res = await axios.get(this.state.ip + "/persons");
+    //let res = await axios.get(this.state.ip + "/persons");
+    const resp = await fetch(this.state.ip + "/persons")
+    const res = await resp.json()
     this.setState({
-      persons: res.data
+      persons: res
     });
-    console.log(res.data);
+    console.log(res);
   };
 
   componentDidMount = () => {
     this.getPerson();
   };
+  
 
   onSubmit = async e => {
     e.preventDefault();
